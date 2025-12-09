@@ -1,33 +1,23 @@
-﻿ClassificarHeroi Classificarheroi = new ClassificarHeroi();
-Console.WriteLine("Classificador de Herói");
-Console.WriteLine("Digite o nome do herói:");
-Classificarheroi.Nome = Console.ReadLine();
-Console.WriteLine("Digite a quantidade de XP do herói:");
-Classificarheroi.Xp = int.TryParse(Console.ReadLine(), out int xp) ? xp : 0;
-Classificarheroi.Classificar();
+﻿using ClassificadorHeroi;
 
+Console.WriteLine("--- Classificador de Heróis ---");
+Console.Write("Digite o nome do herói: ");
+string nome = Console.ReadLine() ?? "Herói Desconhecido";
 
-public class ClassificarHeroi
+int xp;
+
+while (true)
 {
-    public string? Nome { get; set; }
-    public int Xp { get; set;  }
-    public string? Classificacao { get; set; }
+    Console.Write("Quanto de XP ele possui? ");
+    string entrada = Console.ReadLine();
 
-    public void Classificar() {
-        Classificacao = Xp switch
-        {
-            <= 1000 => "Ferro",
-            <= 2000 => "Bronze",
-            <= 5000 => "Prata",
-            <= 7000 => "Ouro",
-            <= 8000 => "Platina",
-            <= 9000 => "Ascendente",
-            <= 10000 => "Imortal",
-             => "Radiante"
-        };
-        
-        Console.WriteLine($"O herói de nome {Nome} está no nível de {Classificacao}.");
+    if (int.TryParse(entrada, out xp)) 
+    {
+        break;
     }
+
+    Console.WriteLine("Por favor, insira um valor numérico válido para o XP.");
 }
 
-    
+Heroi heroi = new Heroi(nome, xp);
+Console.WriteLine($"O herói {heroi.Nome} com {heroi.Xp} de XP é classificado como: {heroi.Classificacao}");
