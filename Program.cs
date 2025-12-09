@@ -14,37 +14,17 @@ public class ClassificarHeroi
     public string? Classificacao { get; set; }
 
     public void Classificar() {
-        if (Xp <= 1000) {
-            Classificacao = "Ferro";
-        }
-
-        else if (Xp >= 1001 && Xp <= 2000) {
-            Classificacao = "Bronze";
-        }
-
-       else if (Xp >= 2001 && Xp <= 5000) {
-            Classificacao = "Prata";
-        }
-
-        else if (Xp >= 5001 && Xp <= 7000) {
-            Classificacao = "Ouro";
-        }
-
-        else if (Xp >= 7001 && Xp <= 8000) {
-            Classificacao = "Platina";
-        }
-
-        else if (Xp >= 8001 && Xp <= 9000) {
-            Classificacao = "Ascendende";
-        }
-
-        else if (Xp >= 9001 && Xp <= 10000) {
-            Classificacao = "Imortal";
-        }
-    
-        else if (Xp >= 10001) {
-            Classificacao = "Radiante";
-        }
+        Classificacao = Xp switch
+        {
+            <= 1000 => "Ferro",
+            <= 2000 => "Bronze",
+            <= 5000 => "Prata",
+            <= 7000 => "Ouro",
+            <= 8000 => "Platina",
+            <= 9000 => "Ascendente",
+            <= 10000 => "Imortal",
+             => "Radiante"
+        };
         
         Console.WriteLine($"O herói de nome {Nome} está no nível de {Classificacao}.");
     }
